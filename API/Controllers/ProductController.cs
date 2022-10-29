@@ -5,10 +5,8 @@ using Domain.Interfaces;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace API.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ProductController : ControllerBase
@@ -26,7 +24,6 @@ public class ProductController : ControllerBase
         return _productService.GetAllProducts();
     }
 
-    [Authorize("AdminPolicy")]
     [HttpPost]
     [Route("")]
     public ActionResult<Product> CreateNewProduct(PostProductDTO dto)
@@ -61,9 +58,8 @@ public class ProductController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-    
 
-    [AllowAnonymous]
+
     [HttpGet]
     [Route("RebuildDB")]
     public void RebuildDB()
@@ -72,7 +68,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{id}")] //localhost:5001/product/8732648732
+    [Route("{id}")]
     public ActionResult<Product> UpdateProduct([FromRoute]int id, [FromBody]Product product)
     {
         try
@@ -86,7 +82,6 @@ public class ProductController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-
 
 
     [HttpDelete]

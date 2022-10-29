@@ -15,14 +15,7 @@ public class DatabaseContext : DbContext
         modelBuilder.Entity<Product>()
             .Property(p => p.Id)
             .ValueGeneratedOnAdd();
-        modelBuilder.Entity<User>()
-            .Property(u => u.Id)
-            .ValueGeneratedOnAdd();
-        modelBuilder.Entity<User>()
-            .HasIndex(u => u.Email)
-            .IsUnique();
     } 
-    
+
     public DbSet<Product> ProductTable { get; set; }
-    public DbSet<User> UserTable { get; set; }
 }
