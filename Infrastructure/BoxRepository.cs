@@ -6,49 +6,48 @@ namespace Infrastructure;
 
 public class BoxRepository : IBoxRepository
 {
-
-    private readonly DatabaseContext _context; 
+    private readonly DatabaseContext m_Context; 
     
     public BoxRepository(DatabaseContext context)
     {
-        _context = context;
+        m_Context = context;
     }
     
     public List<Box> GetAllProducts()
     {
-        return _context.ProductTable.ToList();
+        return m_Context.ProductTable.ToList();
     }
 
     public Box CreateNewProduct(Box product)
     {
-        _context.ProductTable.Add(product);
-        _context.SaveChanges();
+        m_Context.ProductTable.Add(product);
+        m_Context.SaveChanges();
         return product;
     }
 
     public Box GetProductById(int id)
     {
-        return _context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
+        return m_Context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
     }
 
     public bool RebuildDB()
     {
-        _context.Database.EnsureDeleted();
-        return _context.Database.EnsureCreated();
+        m_Context.Database.EnsureDeleted();
+        return m_Context.Database.EnsureCreated();
     }
     
     public Box UpdateProduct(Box product)
     {
-        _context.ProductTable.Update(product);
-        _context.SaveChanges();
+        m_Context.ProductTable.Update(product);
+        m_Context.SaveChanges();
         return product;
     }
 
     public Box DeleteProduct(int id)
     {
-        var productToDelete = _context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
-        _context.ProductTable.Remove(productToDelete);
-        _context.SaveChanges();
+        var productToDelete = m_Context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
+        m_Context.ProductTable.Remove(productToDelete);
+        m_Context.SaveChanges();
         return productToDelete;
     }
 
