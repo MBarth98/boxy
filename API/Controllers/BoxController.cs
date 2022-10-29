@@ -1,37 +1,29 @@
 using Application.DTOs;
-using AutoMapper;
 using Domain;
 using Domain.Interfaces;
 using FluentValidation;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 namespace API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProductController : ControllerBase
+public class BoxController : ControllerBase
 {
-    private IProductService _productService;
+    public BoxController(IBoxService productService) => m_Service = productService;
 
-    public ProductController(IProductService productService)
-    {
-        _productService = productService;
-    }
-    
     [HttpGet]
-    public ActionResult<List<Product>> GetAllProducts()
+    public ActionResult<List<Box>> GetAll()
     {
-        return _productService.GetAllProducts();
+        return m_Service.GetAllBoxes();
     }
 
     [HttpPost]
-    [Route("")]
-    public ActionResult<Product> CreateNewProduct(PostProductDTO dto)
+    public ActionResult<Box> Create([FromBody] CreateBoxDTO dto)
     {
         try
         {
-            var result = _productService.CreateNewProduct(dto);
-            return Created("", result);
+            return Created("", m_Service.CreateNewBox(dto));
         }
         catch (ValidationException v)
         {
@@ -44,12 +36,12 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{id}")] //localhost:5001/product/42
-    public ActionResult<Product> GetProductById(int id)
+    [Route("{id}")]
+    public ActionResult<Box> GetById([FromRoute] int id)
     {
         try
         {
-            return _productService.GetProductById(id);
+            return m_Service.GetById(id);
         }
         catch (KeyNotFoundException) 
         {
@@ -60,49 +52,49 @@ public class ProductController : ControllerBase
             return StatusCode(500, e.ToString());
         }
     }
-
 
     [HttpGet]
     [Route("RebuildDB")]
     public void RebuildDB()
     {
-        _productService.RebuildDB();
+        m_Service.RebuildDB();
     }
 
     [HttpPut]
     [Route("{id}")]
-    public ActionResult<Product> UpdateProduct([FromRoute]int id, [FromBody]Product product)
+    public ActionResult<Box> Update([FromRoute]int id, [FromBody] Box product)
     {
         try
         {
-            return Ok(_productService.UpdateProduct(id, product));
+            return Ok(m_Service.UpdateBox(id, product));
         } 
         catch (KeyNotFoundException) 
         {
-            return NotFound("No product found at ID " + id);
+            return NotFound("No box found with ID " + id);
         } 
         catch (Exception e)
         {
             return StatusCode(500, e.ToString());
         }
     }
-
 
     [HttpDelete]
     [Route("{id}")]
-    public ActionResult<Product> DeleteProduct(int id)
+    public ActionResult<Box> Delete([FromRoute] int id)
     {
         try
         {
-            return Ok(_productService.DeleteProduct(id));
+            return Ok(m_Service.DeleteBox(id));
         } 
         catch (KeyNotFoundException) 
         {
-            return NotFound("No product found at ID " + id);
+            return NotFound("No box found with ID " + id);
         } 
         catch (Exception e)
         {
             return StatusCode(500, e.ToString());
         }
     }
+
+    private IBoxService m_Service;
 }

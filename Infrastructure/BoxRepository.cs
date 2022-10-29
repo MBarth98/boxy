@@ -4,29 +4,29 @@ using Domain;
 
 namespace Infrastructure;
 
-public class ProductRepository : IProductRepository
+public class BoxRepository : IBoxRepository
 {
 
     private readonly DatabaseContext _context; 
     
-    public ProductRepository(DatabaseContext context)
+    public BoxRepository(DatabaseContext context)
     {
         _context = context;
     }
     
-    public List<Product> GetAllProducts()
+    public List<Box> GetAllProducts()
     {
         return _context.ProductTable.ToList();
     }
 
-    public Product CreateNewProduct(Product product)
+    public Box CreateNewProduct(Box product)
     {
         _context.ProductTable.Add(product);
         _context.SaveChanges();
         return product;
     }
 
-    public Product GetProductById(int id)
+    public Box GetProductById(int id)
     {
         return _context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
     }
@@ -37,18 +37,28 @@ public class ProductRepository : IProductRepository
         _context.Database.EnsureCreated();
     }
     
-    public Product UpdateProduct(Product product)
+    public Box UpdateProduct(Box product)
     {
         _context.ProductTable.Update(product);
         _context.SaveChanges();
         return product;
     }
 
-    public Product DeleteProduct(int id)
+    public Box DeleteProduct(int id)
     {
         var productToDelete = _context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
         _context.ProductTable.Remove(productToDelete);
         _context.SaveChanges();
         return productToDelete;
+    }
+
+    public Box SubtractProduct(int id, int amount)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Box AddProduct(int id, int amount)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -16,20 +16,17 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
-
 var mapper = new MapperConfiguration(configuration =>
 {
-    configuration.CreateMap<PostProductDTO, Product>();
+    configuration.CreateMap<CreateBoxDTO, Box>();
 }).CreateMapper();
 
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(
-    "Data source=db.db"
-    ));
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite("Data source=db.db"));
 
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IBoxService, BoxService>();
+builder.Services.AddScoped<IBoxRepository, BoxRepository>();
 
 builder.Services.AddCors();
 
