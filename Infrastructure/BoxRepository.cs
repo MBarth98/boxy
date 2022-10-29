@@ -31,10 +31,10 @@ public class BoxRepository : IBoxRepository
         return _context.ProductTable.Find(id) ?? throw new KeyNotFoundException();
     }
 
-    public void RebuildDB()
+    public bool RebuildDB()
     {
         _context.Database.EnsureDeleted();
-        _context.Database.EnsureCreated();
+        return _context.Database.EnsureCreated();
     }
     
     public Box UpdateProduct(Box product)

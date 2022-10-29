@@ -8,7 +8,7 @@ public interface IBoxRepository
     public List<Box> GetAllProducts();
     public Box CreateNewProduct(Box product);
     public Box GetProductById(int id);
-    public void RebuildDB();
+    public bool RebuildDB();
     public Box UpdateProduct(Box product);
     public Box DeleteProduct(int id);
     public Box SubtractProduct(int id, int amount);

@@ -40,7 +40,7 @@ public class BoxService : IBoxService
         return m_Repository.UpdateProduct(product);
     }
 
-    public void RebuildDB() => m_Repository.RebuildDB();
+    public bool RebuildDB() => m_Repository.RebuildDB();
     
     private readonly IBoxRepository m_Repository;
     private readonly IValidator<CreateBoxDTO> m_ValidatorDTO;

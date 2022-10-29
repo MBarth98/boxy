@@ -16,6 +16,7 @@ public class BoxController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
+    [Produces("application/json")]
     public ActionResult<List<Box>> GetAll()
     {
         return m_Service.GetAllBoxes();
@@ -23,6 +24,7 @@ public class BoxController : ControllerBase
 
     [HttpPost]
     [AllowAnonymous]
+    [Produces("application/json")]
     public ActionResult<Box> Create([FromBody] CreateBoxDTO dto)
     {
         try
@@ -42,6 +44,7 @@ public class BoxController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     [Route("{id}")]
+    [Produces("application/json")]
     public ActionResult<Box> GetById([FromRoute] int id)
     {
         try
@@ -61,14 +64,23 @@ public class BoxController : ControllerBase
     [HttpGet]
     [AllowAnonymous]
     [Route("RebuildDB")]
-    public void RebuildDB()
+    [Produces("application/json")]
+    public ActionResult<object> RebuildDB()
     {
-        m_Service.RebuildDB();
+        if (m_Service.RebuildDB())
+        {
+            return Ok("Database rebuilt");
+        }
+        else
+        {
+            return StatusCode(500, "Database rebuild failed");
+        }  
     }
 
     [HttpPut]
     [AllowAnonymous]
     [Route("{id}")]
+    [Produces("application/json")]
     public ActionResult<Box> Update([FromRoute]int id, [FromBody] Box product)
     {
         try
@@ -88,6 +100,7 @@ public class BoxController : ControllerBase
     [HttpDelete]
     [AllowAnonymous]
     [Route("{id}")]
+    [Produces("application/json")]
     public ActionResult<Box> Delete([FromRoute] int id)
     {
         try

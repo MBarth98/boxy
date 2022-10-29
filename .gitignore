@@ -2,3 +2,6 @@ obj
 bin
 .idea
 appsettings.json
+API/db.db
+API/db.db-shm
+API/db.db-wal

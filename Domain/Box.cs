@@ -1,5 +1,4 @@
-﻿using UnitsNet;
-
+﻿
 namespace Domain;
 
 public class Box
@@ -13,15 +12,6 @@ public class Box
     public int Quantity { get; set; } = 0;
     public float Price { get; set; } = float.MaxValue; 
 
-    /*
-        todo: optimize json serialization
-
-        public Length Height { get; set; }
-        public Length Width { get; set; }
-        public Length Depth { get; set; }
-        public Length Thickness { get; set; }
-        public Mass Weight { get; set; }
-    */
     public double Height { get; set; }
     public double Width { get; set; }
     public double Depth { get; set; }
