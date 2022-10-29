@@ -50,10 +50,12 @@ public class ProductController : ControllerBase
         try
         {
             return _productService.GetProductById(id);
-        } catch (KeyNotFoundException e) 
+        }
+        catch (KeyNotFoundException) 
         {
             return NotFound("No product found at ID " + id);
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
             return StatusCode(500, e.ToString());
         }
@@ -74,10 +76,12 @@ public class ProductController : ControllerBase
         try
         {
             return Ok(_productService.UpdateProduct(id, product));
-        } catch (KeyNotFoundException e) 
+        } 
+        catch (KeyNotFoundException) 
         {
             return NotFound("No product found at ID " + id);
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
             return StatusCode(500, e.ToString());
         }
@@ -91,10 +95,12 @@ public class ProductController : ControllerBase
         try
         {
             return Ok(_productService.DeleteProduct(id));
-        } catch (KeyNotFoundException e) 
+        } 
+        catch (KeyNotFoundException) 
         {
             return NotFound("No product found at ID " + id);
-        } catch (Exception e)
+        } 
+        catch (Exception e)
         {
             return StatusCode(500, e.ToString());
         }

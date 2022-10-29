@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,9 +6,8 @@ namespace Infrastructure;
 
 public class DatabaseContext : DbContext
 {
-    public DatabaseContext(DbContextOptions<DatabaseContext> opts) : base(opts)
+    public DatabaseContext(DbContextOptions<DatabaseContext> opts) : base(opts) 
     {
-        
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,6 +16,7 @@ public class DatabaseContext : DbContext
             .Property(p => p.Id)
             .ValueGeneratedOnAdd();
     } 
-
+    
+    [AllowNull]
     public DbSet<Product> ProductTable { get; set; }
 }
