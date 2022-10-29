@@ -22,6 +22,19 @@ public class DatabaseContext : DbContext
         entity.Property(p => p.ImageUrl);
         entity.Property(p => p.Description);
 
+
+        /*
+            temp: optimize json serialization by using double instead of Length and Mass
+        */
+        entity.Property(p => p.Height);
+        entity.Property(p => p.Width);
+        entity.Property(p => p.Depth);
+        entity.Property(p => p.Thickness);
+        entity.Property(p => p.Weight);
+
+        /*
+            todo: see Domain.Box.cs constructor
+
         entity.Property(p => p.Tags).HasConversion(
             v => string.Join(',', v),
             v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
@@ -52,6 +65,7 @@ public class DatabaseContext : DbContext
             v => Mass.FromKilograms(v)
         );
 
+        */
         base.OnModelCreating(modelBuilder);
     } 
     

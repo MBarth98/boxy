@@ -1,7 +1,9 @@
 using Application.DTOs;
 using Domain;
+using AutoMapper;
 using Domain.Interfaces;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -13,12 +15,14 @@ public class BoxController : ControllerBase
     public BoxController(IBoxService productService) => m_Service = productService;
 
     [HttpGet]
+    [AllowAnonymous]
     public ActionResult<List<Box>> GetAll()
     {
         return m_Service.GetAllBoxes();
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public ActionResult<Box> Create([FromBody] CreateBoxDTO dto)
     {
         try
@@ -36,6 +40,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     [Route("{id}")]
     public ActionResult<Box> GetById([FromRoute] int id)
     {
@@ -54,6 +59,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     [Route("RebuildDB")]
     public void RebuildDB()
     {
@@ -61,6 +67,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpPut]
+    [AllowAnonymous]
     [Route("{id}")]
     public ActionResult<Box> Update([FromRoute]int id, [FromBody] Box product)
     {
@@ -79,6 +86,7 @@ public class BoxController : ControllerBase
     }
 
     [HttpDelete]
+    [AllowAnonymous]
     [Route("{id}")]
     public ActionResult<Box> Delete([FromRoute] int id)
     {
