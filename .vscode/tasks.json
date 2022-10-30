@@ -2,11 +2,24 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build",
+            "label": "update node modules",
+            "type": "shell",
+            "command": "npm install",
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "dotnet build",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
+                "--no-restore",
                 "${workspaceFolder}/API/API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
@@ -14,18 +27,19 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run",
+            "label": "dotnet run",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "run",
                 "--project",
+                "--no-build",
                 "${workspaceFolder}/API/API.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "dotnet publish",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -37,7 +51,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "restore",
+            "label": "dotnet restore",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -49,7 +63,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "watch",
+            "label": "dotnet watch",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -59,6 +73,16 @@
                 "${workspaceFolder}/API/API.csproj"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "launch frontend",
+            "type": "npm",
+            "script": "start",
+            "path": "frontend/Boxy",
+            "problemMatcher": [
+                "$tsc-angular-cli"
+            ],
+            "detail": "ng serve"
         }
     ]
 }
