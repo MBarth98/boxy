@@ -13,7 +13,10 @@
             "type": "npm",
             "script": "start",
             "path": "frontend/Boxy",
-            "detail": "host the web server locally on port 4200"
+            "detail": "host the web server locally on port 4200",
+            "problemMatcher": [
+                "$tsc"
+            ]
         },
         {
             "label": "dotnet build",

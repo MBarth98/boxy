@@ -91,8 +91,6 @@
     border-radius: 4px;
     border: 1px solid #eee;
     background-color: #fafafa;
-    height: 40px;
-    width: 200px;
     margin: 0 8px 16px;
     padding: 16px;
     display: flex;
@@ -105,6 +103,13 @@
 
   .card-container .card:not(:last-child) {
     margin-right: 0;
+  }
+
+  .card-big {
+    min-width: 30%;
+    min-height: auto;
+    max-width: 30%;
+    max-height: 30%;
   }
 
   .card.card-small {
@@ -269,22 +274,22 @@
         .terminal {
           width: 100%;
         }
-    
+
         .card:not(.highlight-card) {
           height: 16px;
           margin: 8px 0;
         }
-    
+
         .card.highlight-card span {
           margin-left: 72px;
         }
-    
+
         svg#rocket-smoke {
           right: 120px;
           transform: rotate(-5deg);
         }
       }
-    
+
       @media screen and (max-width: 575px) {
         svg#rocket-smoke {
           display: none;

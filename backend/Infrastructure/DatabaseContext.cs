@@ -14,8 +14,6 @@ public class DatabaseContext : DbContext
 
         entity.Property(p => p.Id).ValueGeneratedOnAdd();
         
-        entity.Property(p => p.Price);
-        entity.Property(p => p.Quantity);
         entity.Property(p => p.ImageUrl);
         entity.Property(p => p.Description);
 
@@ -25,10 +23,6 @@ public class DatabaseContext : DbContext
         entity.Property(p => p.Thickness);
         entity.Property(p => p.Weight);
         
-        entity.Property(p => p.Tags).HasConversion(
-            v => string.Join(',', v),
-            v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList()
-        );
 
         base.OnModelCreating(modelBuilder);
     } 
