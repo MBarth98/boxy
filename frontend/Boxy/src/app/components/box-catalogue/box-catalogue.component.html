@@ -1,0 +1,7 @@
+
+
+<div class="card-container">
+
+  <app-box-card class="card" *ngFor="let box of boxes" [box]="box" (boxSelected)="onSelectionUpdated(box)"></app-box-card>
+
+</div>

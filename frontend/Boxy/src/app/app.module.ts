@@ -7,11 +7,15 @@ import {} from '@angular/material'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BoxCardComponent } from './components/box-card/box-card.component';
+import { BoxCatalogueComponent } from './components/box-catalogue/box-catalogue.component';
+import { CreateEditFormComponent } from './components/create-edit-form/create-edit-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoxCardComponent
+    BoxCardComponent,
+    BoxCatalogueComponent,
+    CreateEditFormComponent
   ],
   imports: [
     BrowserModule,
