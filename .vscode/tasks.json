@@ -2,16 +2,18 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "update node modules",
-            "type": "shell",
-            "command": "npm install",
-            "group": {
-                "kind": "build"
-            },
-            "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            }
+            "label": "install dependencies for frontend",
+            "type": "npm",
+            "script": "install",
+            "path": "frontend/Boxy",
+            "detail": "npm install - you may need to terminate it manually"
+        },
+        {
+            "label": "launch frontend",
+            "type": "npm",
+            "script": "start",
+            "path": "frontend/Boxy",
+            "detail": "host the web server locally on port 4200"
         },
         {
             "label": "dotnet build",
@@ -19,8 +21,7 @@
             "type": "process",
             "args": [
                 "build",
-                "--no-restore",
-                "${workspaceFolder}/API/API.csproj",
+                "${workspaceFolder}/backend/API/API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,20 +34,7 @@
             "args": [
                 "run",
                 "--project",
-                "--no-build",
-                "${workspaceFolder}/API/API.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "dotnet publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/API/API.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/backend/API/API.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -56,7 +44,7 @@
             "type": "process",
             "args": [
                 "restore",
-                "${workspaceFolder}/API/API.csproj",
+                "${workspaceFolder}/backend/API/API.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -70,19 +58,9 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/API/API.csproj"
+                "${workspaceFolder}/backend/API/API.csproj"
             ],
             "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "launch frontend",
-            "type": "npm",
-            "script": "start",
-            "path": "frontend/Boxy",
-            "problemMatcher": [
-                "$tsc-angular-cli"
-            ],
-            "detail": "ng serve"
         }
     ]
 }
