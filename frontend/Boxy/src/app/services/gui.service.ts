@@ -9,10 +9,9 @@ import { Box } from '../types/Box';
 
 export class GuiService {
 
-  public selectedBox: Observable<Box> = new Observable();
-  public availableBoxes: Observable<Box[]> = new Observable();
+  public currentBox: Box | undefined;
+  public boxes: Box[] = [];
 
-
-  constructor() { }
+  constructor() {}
 
 }

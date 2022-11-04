@@ -1,0 +1,17 @@
+
+<form *ngIf="this.gui.currentBox !== undefined">
+  <input required type="number" name="Width" [(ngModel)]="this.gui.currentBox!.width">
+  <input required type="number" name="Height" [(ngModel)]="this.gui.currentBox!.height">
+  <input required type="number" name="Depth"  [(ngModel)]="this.gui.currentBox!.depth">
+  <input required type="number" name="Thickness" [(ngModel)]="this.gui.currentBox!.thickness">
+  <input required type="number" name="Weight" [(ngModel)]="this.gui.currentBox!.weight">
+
+  <label for="textarea">Description</label>
+  <textarea class="input" id="textarea" (change)="doTextareaValueChange($event)" [value]="this.gui.currentBox!.description"></textarea>
+
+  <label for="text-input">image url</label>
+  <input class="input" name="image url" id="form-desc" type="url" [(ngModel)]="this.gui.currentBox!.imageUrl" />
+
+  <button type="submit" (click)="onSave()">Save</button>
+</form>
+

@@ -1,4 +1,33 @@
 
 <button (click)="onBoxSelected()" tabindex="0">
   <img id="box-image" src="{{box?.imageUrl}}">
+  <div style="border-top: 1pt solid black;"></div>
+  <br>
+  <div id="box-info">
+    <div id="info-line">
+      <span id="prop-title">
+        <b>Height</b>:
+      </span>
+      <span id="prop-content">
+        {{box?.height}} cm
+      </span>
+    </div>
+    <div id="info-line">
+      <span id="prop-title">
+        <b>Width</b>:
+      </span>
+      <span id="prop-content">
+        {{box?.width}} cm
+      </span>
+    </div>
+    <div id="info-line">
+      <span id="prop-title">
+        <b>Depth</b>:
+      </span>
+      <span id="prop-content">
+        {{box?.depth}} cm
+      </span>
+    </div>
+  </div>
+  <br>
 </button>
