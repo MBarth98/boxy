@@ -1,0 +1,27 @@
+
+<form>
+  <label for="Height">Height</label>
+  <input class="input" type="number" id="Height" name="Height" [(ngModel)]="this.height">
+
+  <label for="Width">Width</label>
+  <input class="input" type="number" name="Width" id="Width" [(ngModel)]="this.width">
+
+  <label for="Depth">Depth</label>
+  <input class="input" type="number" id="Depth" name="Depth"  [(ngModel)]="this.depth">
+
+  <label for="Thickness">Thickness</label>
+  <input class="input" type="number" id="Thickness" name="Thickness" [(ngModel)]="this.thickness">
+
+  <label for="Weight">Weight</label>
+  <input class="input" type="number" id="Weight" name="Weight" [(ngModel)]="this.weight">
+
+  <label for="textarea">Description</label>
+  <textarea class="input" id="textarea" name="desc" [value]="this.description"></textarea>
+
+  <label for="form-url">image url</label>
+  <input class="input" name="image-url" id="form-url" type="url" [(ngModel)]="this.imageUrl" />
+
+  <br>
+  <button type="submit" (click)="onSave()">Create new box</button>
+</form>
+

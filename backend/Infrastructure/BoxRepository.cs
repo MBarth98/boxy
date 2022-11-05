@@ -41,6 +41,23 @@ public class BoxRepository : IBoxRepository
         m_Context.ProductTable.Update(product);
         m_Context.SaveChanges();
         return product;
+        /*
+        // using dapper
+        var awaiter = m_Context.ExecuteAsync(
+            @$"UPDATE ProductTable SET 
+            ImageUrl = {product.ImageUrl}, 
+            Description = {product.Description},
+            Height = {product.Height},
+            Width = {product.Width},
+            Depth = {product.Depth},
+            Thickness = {product.Thickness},
+            Weight = {product.Weight} 
+            WHERE Id = {product.Id}");
+
+        awaiter.Wait();
+
+        return product;
+        */
     }
 
     public Box DeleteProduct(int id)

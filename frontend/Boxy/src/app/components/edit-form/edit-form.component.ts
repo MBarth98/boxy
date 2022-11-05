@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscriber, Subscription } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 import { GuiService } from 'src/app/services/gui.service';
 import { Box } from 'src/app/types/Box';
 
@@ -10,13 +11,19 @@ import { Box } from 'src/app/types/Box';
 })
 export class EditFormComponent implements OnInit {
 
-  constructor(public gui: GuiService) {}
+  constructor(public gui: GuiService, private api: ApiService) {}
 
   ngOnInit(): void {}
 
-
   onSave() {
-    console.log("editor: " + JSON.stringify(this.gui.currentBox));
+    console.log('edit');
+
+    if (this.gui.currentBox) {
+      this.api.updateBox(this.gui.currentBox!.id, this.gui.currentBox!).subscribe((box) => {
+        console.log(box);
+        this.gui.currentBox = box;
+      });
+    }
   }
 
   doTextareaValueChange(ev : any) {

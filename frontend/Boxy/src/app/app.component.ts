@@ -13,8 +13,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
 
-  updateForm() {
-    console.log("updateForm");
-  }
-  title = 'Boxy';
+  constructor() { }
+
 }

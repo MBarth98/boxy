@@ -81,6 +81,7 @@ public class BoxController : ControllerBase
     [AllowAnonymous]
     [Route("{id}")]
     [Produces("application/json")]
+    [Consumes("application/json")]
     public ActionResult<Box> Update([FromRoute]int id, [FromBody] Box product)
     {
         try

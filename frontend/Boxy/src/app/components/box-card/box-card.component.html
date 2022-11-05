@@ -1,6 +1,6 @@
 
-<button (click)="onBoxSelected()" tabindex="0">
-  <img id="box-image" src="{{box?.imageUrl}}">
+<button *ngIf="this.box !== undefined" (click)="onBoxSelected()" tabindex="0">
+  <img id="box-image" src="{{this.box.imageUrl}}">
   <div style="border-top: 1pt solid black;"></div>
   <br>
   <div id="box-info">
@@ -9,7 +9,7 @@
         <b>Height</b>:
       </span>
       <span id="prop-content">
-        {{box?.height}} cm
+        {{box.height}} cm
       </span>
     </div>
     <div id="info-line">
@@ -17,7 +17,7 @@
         <b>Width</b>:
       </span>
       <span id="prop-content">
-        {{box?.width}} cm
+        {{box.width}} cm
       </span>
     </div>
     <div id="info-line">
@@ -25,9 +25,12 @@
         <b>Depth</b>:
       </span>
       <span id="prop-content">
-        {{box?.depth}} cm
+        {{box.depth}} cm
       </span>
     </div>
   </div>
   <br>
+</button>
+<button *ngIf="this.box === undefined" (click)="onBoxSelected()" tabindex="0">
+  <img id="box-image" style="position: relative; vertical-align: center;" src="https://pngimg.com/uploads/plus/plus_PNG58.png">
 </button>

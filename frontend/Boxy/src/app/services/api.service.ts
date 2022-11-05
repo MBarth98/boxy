@@ -19,7 +19,7 @@ export class ApiService {
     return this.client.get<Box>('http://localhost:5252/box/' + id);
   }
 
-  public createBox(box:Box) {
+  public createBox(box:Box | object) {
     return this.client.post<Box>('http://localhost:5252/box', box);
   }
 

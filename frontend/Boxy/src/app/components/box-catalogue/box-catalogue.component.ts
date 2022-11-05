@@ -12,36 +12,10 @@ import { Box } from '../../types/Box';
 })
 
 export class BoxCatalogueComponent implements OnInit {
-  constructor(private gui:GuiService, private api : ApiService) { }
-
-  public boxes: Box[] = []
+  constructor(public gui:GuiService, private api : ApiService) { }
 
   ngOnInit(): void {
-
-    this.boxes = [
-      {
-        id: 1,
-        imageUrl: "https://i.imgur.com/EJLFNOw.png",
-        description: "A box",
-        height: 10,
-        width: 10,
-        depth: 10,
-        thickness: 10,
-        weight: 10
-      },
-      {
-        id: 2,
-        imageUrl: "https://i.imgur.com/EJLFNOw.png",
-        description: "A box",
-        height: 10,
-        width: 10,
-        depth: 10,
-        thickness: 10,
-        weight: 10
-      }
-    ];
-
-    this.gui.boxes = this.boxes;
+    this.onReload();
   }
 
   onReload() {
@@ -51,7 +25,7 @@ export class BoxCatalogueComponent implements OnInit {
   }
 
   onSelectionUpdated(box: Box) {
-    if (this.boxes.indexOf(box) >= 0) {
+    if (this.gui.boxes.indexOf(box) >= 0) {
       this.gui.currentBox = box;
     }
   }
